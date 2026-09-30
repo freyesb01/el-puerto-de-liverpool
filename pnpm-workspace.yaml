@@ -1,4 +1,4 @@
 allowBuilds:
   core-js: true
   sharp: true
-storeDir: /home/fredy/El Puerto de Liverpool/.local-tools/pnpm-store
+storeDir: .local-tools/pnpm-store
