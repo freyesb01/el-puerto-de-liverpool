@@ -1,0 +1,389 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Material Design 3 / Liverpool Theme */
+  --background: #FAFAFA;
+  --foreground: #1D1B20;
+  --card: #FFFFFF;
+  --card-foreground: #1D1B20;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #833177;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F3E8F1;
+  --secondary-foreground: #833177;
+  --muted: #F0F0F0;
+  --muted-foreground: #49454F;
+  --accent: #E5D5E2;
+  --accent-foreground: #833177;
+  --destructive: #ff6d01;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(131, 49, 119, 0.25);
+  --input: rgba(131, 49, 119, 0.25);
+  --ring: #833177;
+  --chart-1: #833177;
+  --chart-2: #A64B9A;
+  --chart-3: #C965BD;
+  --chart-4: #E58DE0;
+  --chart-5: #F9B5F6;
+  --radius: 0rem;
+  --sidebar: #833177;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;
+  --sidebar-primary-foreground: #833177;
+  --sidebar-accent: #A64B9A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(131, 49, 119, 0.25);
+  --sidebar-ring: #833177;
+  
+  /* Custom tokens */
+  --surface-elevated: #FFFFFF;
+  --surface-sunken: #F5F5F5;
+  --success: #833177;
+  --warning: #ff6d01;
+  --info: #0061A4;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter', 'Roboto', system-ui;
+  --font-serif: 'Source Serif 4', 'Georgia', serif;
+  --font-mono: 'JetBrains Mono', 'Menlo', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Custom colors */
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: rgba(131, 49, 119, 0.25) !important;
+    @apply outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hide Next.js Dev Tools button */
+[data-nextjs-dev-tools-button],
+#next-logo,
+[data-next-mark] {
+  display: none !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Smooth transitions */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from { 
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from { 
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.95 0.005 85) 25%,
+    oklch(0.92 0.005 85) 50%,
+    oklch(0.95 0.005 85) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(131, 49, 119, 0.25);
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Hide UI elements not meant for PDF */
+  .print\:hidden,
+  aside,
+  header {
+    display: none !important;
+  }
+  
+  /* Ensure main content takes full width */
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  /* Adjust charts and cards to avoid breaking */
+  article, section, .bg-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #E0E0E0 !important;
+  }
+  
+  /* Inject Footer */
+  body::after {
+    content: "Visto bueno y aprobación: Luis Felipe - [Insertar Cargo]";
+    display: block;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid #E0E0E0;
+    background-color: white;
+  }
+  
+  @page {
+    margin: 1cm;
+    size: auto;
+  }
+}
+
+/* Ensure no border-radius on chart dots */
+.recharts-line-dot,
+.recharts-area-dot {
+  border-radius: 0 !important;
+  rx: 0 !important;
+  ry: 0 !important;
+}
+
+/* ==========================================================================
+   Cursores Personalizados Liverpool (pointer: fine)
+   ========================================================================== */
+@media (pointer: fine) {
+  /* ============================================================
+     BASE — Liverpool Arrow como cursor por defecto global
+     ============================================================ */
+  :root {
+    --cursor-liverpool-arrow: url('/cursors/liverpool-arrow-cursor.svg') 7 3, default;
+    --cursor-liverpool-hand: url('/cursors/liverpool-hand-cursor.svg') 12 4, pointer;
+  }
+
+  html {
+    cursor: var(--cursor-liverpool-arrow);
+  }
+
+  /* ============================================================
+     NORMAL — Superficies no interactivas → Liverpool Arrow
+     ============================================================ */
+  body,
+  .cursor-default,
+  .cursor-liverpool-default {
+    cursor: var(--cursor-liverpool-arrow);
+  }
+
+  /* ============================================================
+     CLICKABLE — Elementos interactivos funcionales → Liverpool Hand
+     ============================================================ */
+  a,
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  label[for],
+  select:not(:disabled),
+  input[type="button"]:not(:disabled),
+  input[type="submit"]:not(:disabled),
+  input[type="reset"]:not(:disabled),
+  .cursor-pointer,
+  .cursor-liverpool-pointer {
+    cursor: var(--cursor-liverpool-hand);
+  }
+
+  /* ============================================================
+     TEXT — Campos editables → I-beam nativo
+     ============================================================ */
+  input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(:disabled),
+  textarea:not(:disabled),
+  [contenteditable="true"] {
+    cursor: text;
+  }
+
+  /* ============================================================
+     DISABLED — Controles deshabilitados → not-allowed nativo
+     ============================================================ */
+  button:disabled,
+  input:disabled,
+  select:disabled,
+  textarea:disabled,
+  [role="button"][aria-disabled="true"],
+  a[aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  /* ============================================================
+     RESIZE — Redimensionamiento → cursores nativos
+     ============================================================ */
+  [style*="resize"],
+  textarea {
+    /* textarea ya cubierto arriba con text, pero resize nativo funciona */
+  }
+
+  /* ============================================================
+     GRAB — Arrastrar (cuando aplique)
+     ============================================================ */
+  .cursor-grab {
+    cursor: grab;
+  }
+  .cursor-grabbing {
+    cursor: grabbing;
+  }
+
+  /* ============================================================
+     RECHARTS — Sin excepción cursor:default; usan Arrow global
+     Elementos realmente clicables dentro de gráficas usan Hand vía semántica/clase
+     ============================================================ */
+  .recharts-wrapper,
+  .recharts-wrapper *,
+  .recharts-surface {
+    cursor: var(--cursor-liverpool-arrow);
+  }
+}
+
+

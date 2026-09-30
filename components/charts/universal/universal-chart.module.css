@@ -1,0 +1,195 @@
+.dashboard {
+  min-width: 0;
+  container-type: inline-size;
+  padding-bottom: 5px;
+  font-family: var(--font-sans);
+}
+
+.grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; align-items: stretch; gap: 5px; }
+.kpiGroup { display: contents; }
+
+@container (min-width: 1100px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.card {
+  min-width: 0;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(131, 49, 119, 0.25);
+  border-radius: 0;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  color: var(--foreground);
+  container-type: inline-size;
+  height: 100%;
+}
+
+.header { display: flex; align-items: center; gap: 10px; min-height: 60px; margin-bottom: 15px; }
+.heading { min-width: 0; flex: 1; }
+.headerControls { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+.title { font-size: 15px; line-height: 17.5px; font-weight: 500; overflow-wrap: anywhere; text-align: left; }
+.subtitle { font-size: 10px; line-height: 12.5px; color: var(--muted-foreground); }
+.icon { width: 45px; height: 45px; display: grid; place-items: center; flex-shrink: 0; background: var(--secondary); }
+
+.controlGroup {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.control {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 0;
+  cursor: pointer;
+  transition: none;
+}
+
+.control:hover {
+  filter: none;
+  transform: none;
+}
+
+.control:focus-visible {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.viewSelector {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 40;
+}
+
+.viewSelectorButton {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  cursor: pointer;
+  transition: none;
+}
+
+.viewSelectorButton:hover {
+  filter: none;
+  transform: none;
+}
+
+.viewSelectorButton:focus-visible {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.kpi { display: flex; align-items: center; gap: 5px; margin-bottom: 15px; min-height: 30px; }
+.kpiMarker { width: 5px; height: 12.5px; background: currentColor; flex-shrink: 0; }
+.value { font-family: var(--font-mono); font-size: 25px; line-height: 30px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.025em; }
+.plot { min-width: 0; width: 100%; flex: none; position: relative; }
+.plot :global(text) { font-size: 10px !important; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  column-gap: 15px;
+  row-gap: 5px;
+  height: 40px;
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 12.5px;
+  color: var(--muted-foreground);
+}
+
+.legendItem { display: inline-flex; align-items: center; gap: 5px; }
+.legendMark { width: 5px; height: 12.5px; flex-shrink: 0; }
+.empty { height: 100%; display: grid; place-items: center; font-size: 12.5px; color: var(--muted-foreground); }
+
+.tooltip {
+  width: min(240px, calc(100vw - 24px));
+  max-width: min(240px, calc(100vw - 24px));
+  box-sizing: border-box;
+  padding: 0;
+  background: #ffffff;
+  color: var(--tooltip-accent, #833177);
+  border: 1px solid color-mix(in srgb, var(--tooltip-accent, #833177) 25%, transparent);
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12.5px;
+  text-align: left;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-break: normal;
+  pointer-events: none;
+}
+
+.tooltip :global(*) {
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  line-height: 12.5px !important;
+}
+
+.tooltip :global(.font-mono) {
+  font-variant-numeric: tabular-nums;
+}
+
+.tooltip [data-tooltip-explanation] {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+@container (max-width: 330px) {
+  .header { min-height: 90px; align-items: flex-start; }
+  .icon, .controlGroup, .control, .viewSelectorButton { width: 36px; height: 36px; }
+  .title { font-size: 15px; line-height: 17.5px; }
+}
+
+@media (max-width: 767px) {
+  :global(.h-screen):has(.dashboard) { height: auto; min-height: 100dvh; overflow: visible; }
+  :global(.flex):has(> :global(aside)):has(.dashboard) { flex-direction: column; overflow: visible; }
+  :global(aside):has(~ :global(div) .dashboard) { width: 100%; height: auto; }
+  :global(aside):has(~ :global(div) .dashboard) :global(.flex-1) { flex: none; }
+  :global(main):has(> :global(div) > .dashboard) { overflow: visible; }
+}
+
+/* Fondos sólidos universales para controles de tipo de gráfica */
+.control {
+  background-color: color-mix(in srgb, currentColor 9.4%, #ffffff) !important;
+}
+
+.viewSelectorButton {
+  background-color: color-mix(in srgb, currentColor 7.1%, #ffffff) !important;
+}
+
+.viewSelectorButton[aria-checked="true"] {
+  background-color: color-mix(in srgb, currentColor 14.1%, #ffffff) !important;
+}
+
+/* Fondo sólido universal para cualquier control de menú dentro de una gráfica */
+.card button[aria-haspopup="menu"] {
+  background-color: color-mix(in srgb, currentColor 9.4%, #ffffff) !important;
+}
+
+.card [role="menu"] button[role="menuitemradio"] {
+  background-color: color-mix(in srgb, currentColor 7.1%, #ffffff) !important;
+}
+
+.card [role="menu"] button[role="menuitemradio"][aria-checked="true"] {
+  background-color: color-mix(in srgb, currentColor 14.1%, #ffffff) !important;
+}
